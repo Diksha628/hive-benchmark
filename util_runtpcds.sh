@@ -77,7 +77,7 @@ function runBenchmark() {
             query_path=("${QUERY_BASE_NAME}${QUERY_NUM}${QUERY_FILE_EXT}")
             LOG_PATH="log_query/logquery${QUERY_NUM}.${j}.txt"
 
-            ./util_internalRunQuery.sh "$DATABASE" "$CURR_DIR$SETTINGS_PATH" "$CURR_DIR$query_path" "$CURR_DIR$LOG_PATH" "$QUERY_NUM" "$CURR_DIR$REPORT_NAME.csv"
+            ./util_internalRunQuery.sh "$DATABASE" "$CURR_DIR$SETTINGS_PATH" "$CURR_DIR$query_path" "$CURR_DIR$LOG_PATH" "$QUERY_NUM" "$CURR_DIR$REPORT_NAME.csv" "$TYPE"
 
             # ./util_internalGetPAT.sh /$CURR_DIR/util_internalRunQuery.sh "$DATABASE" "$CURR_DIR$SETTINGS_PATH" "$CURR_DIR$query_path" "$CURR_DIR$LOG_PATH" "$QUERY_NUM" "$CURR_DIR$REPORT_NAME.csv" tpcdsPAT"$ID"/query"$i"/
         done
@@ -106,6 +106,7 @@ function generateZipReport() {
 # --- SCRIPT START ---
 SCALE=$1
 FORMAT=$2
+TYPE=$3
 TIMEZONE="America/Los_Angeles"
 
 if [[ "X$SCALE" == "X" || $SCALE -eq 1 ]]; then

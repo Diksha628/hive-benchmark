@@ -130,6 +130,7 @@ function analyze_tables() {
 DEBUG_SCRIPT="true"
 SCALE=$1
 FORMAT=$2
+TYPE=$3
 DIR=/tmp/tpcds-generate
 
 if [[ ! -f tpcds-gen/target/tpcds-gen-1.0-SNAPSHOT.jar ]]; then
@@ -147,8 +148,13 @@ if [[ "$FORMAT" != "orc" && "$FORMAT" != "parquet" ]]; then
     usageExit
 fi
 
+
 HOSTNAME=$(hostname -f)
-BEELINEURL="beeline -u 'jdbc:hive2://hive-interactive:10001/;transportMode=http'"
+if [["$TYPE" == "hilo"]]; then
+    HOSTNAME="hive-interactive"
+fi
+
+BEELINEURL="beeline -u 'jdbc:hive2://${HOSTNAME}:10001/;transportMode=http'"
 TEXT_DB="tpcds_text_${SCALE}"
 DATABASE="tpcds_bin_partitioned_${FORMAT}_${SCALE}"
 
