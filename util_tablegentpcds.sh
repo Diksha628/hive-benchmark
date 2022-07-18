@@ -148,7 +148,7 @@ if [[ "$FORMAT" != "orc" && "$FORMAT" != "parquet" ]]; then
 fi
 
 HOSTNAME=$(hostname -f)
-BEELINEURL="beeline -u 'jdbc:hive2://$HOSTNAME:10001/;transportMode=http'"
+BEELINEURL="beeline -u 'jdbc:hive2://hive-interactive:10001/;transportMode=http'"
 TEXT_DB="tpcds_text_${SCALE}"
 DATABASE="tpcds_bin_partitioned_${FORMAT}_${SCALE}"
 
