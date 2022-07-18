@@ -12,7 +12,7 @@ TIME_TO_TIMEOUT=120m
 MODE='default'
 HOSTNAME=$(hostname -f)
 
-if [["$TYPE" == "hilo"]]; then
+if [[ "$TYPE" == "hilo" ]]; then
     HOSTNAME="hive-interactive"
 fi
 

@@ -150,13 +150,15 @@ fi
 
 
 HOSTNAME=$(hostname -f)
-if [["$TYPE" == "hilo"]]; then
+if [[ "$TYPE" == "hilo" ]]; then
     HOSTNAME="hive-interactive"
 fi
 
 BEELINEURL="beeline -u 'jdbc:hive2://${HOSTNAME}:10001/;transportMode=http'"
 TEXT_DB="tpcds_text_${SCALE}"
 DATABASE="tpcds_bin_partitioned_${FORMAT}_${SCALE}"
+
+# echo "beeline -u 'jdbc:hive2://${HOSTNAME}:10001/;transportMode=http'"
 
 generate_data
 
@@ -166,4 +168,4 @@ create_managed_tables
 
 load_constraints
 
-analyze_tables
+# analyze_tables
